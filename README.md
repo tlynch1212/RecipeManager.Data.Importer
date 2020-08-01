@@ -1,5 +1,5 @@
 # RecipeManager.Data.Importer
-This is a tool to import recipes and/or ratings into a postgres database.
+This is a tool to import recipes and/or ratings into a postgres database. This supports the RecipeManager project.
 
 ## How to Run
 1. First you need to publish the code - `dotnet publish -c Release -o <publishLocation> <SolutionFile>`
