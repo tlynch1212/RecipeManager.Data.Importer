@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Dataimporter": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Development\\Recipes\\RAW_recipes.csv\""
+    }
+  }
+}

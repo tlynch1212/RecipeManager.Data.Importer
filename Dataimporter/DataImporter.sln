@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dataimporter", "Dataimporter.csproj", "{7ED06958-3B00-4338-9ABB-7F3D25C6D31B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7ED06958-3B00-4338-9ABB-7F3D25C6D31B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ED06958-3B00-4338-9ABB-7F3D25C6D31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ED06958-3B00-4338-9ABB-7F3D25C6D31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ED06958-3B00-4338-9ABB-7F3D25C6D31B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60905ED1-00E9-4894-B588-A6EEFC5CE315}
+	EndGlobalSection
+EndGlobal
