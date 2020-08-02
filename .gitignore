@@ -7,3 +7,8 @@
 /Dataimporter/bin/Release/netcoreapp3.1
 /Dataimporter/obj
 /Dataimporter/.vs/DataImporter/config
+Dataimporter/Dataimporter.csproj.user
+Dataimporter/Properties/launchSettings.json
+Dataimporter/Properties/PublishProfiles/Dataimporter20200802110454 - Web Deploy.pubxml
+Dataimporter/Properties/PublishProfiles/Dataimporter20200802110454 - Web Deploy.pubxml.user
+Dataimporter/Settings.job

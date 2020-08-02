@@ -13,14 +13,22 @@ namespace Dataimporter.Converters
         public static void ProcessRecipes(string path)
         {
             Console.WriteLine("trying path: " + path);
-            if (File.Exists(path))
+            var tempPath = path;
+            if (path.StartsWith("http"))
+            {
+                tempPath = @".\RAW_recipes.csv";
+                var wc = new System.Net.WebClient();
+                wc.DownloadFile(path, tempPath);
+            }
+
+            if (File.Exists(tempPath))
             {
                 Console.WriteLine("File found. Proccessing Recipes...");
                 var batch = 0;
                 var totalCount = 0;
                 using (var db = new DataContext())
                 {
-                    var Lines = File.ReadLines(path).Select(a => a);
+                    var Lines = File.ReadLines(tempPath).Select(a => a);
                     var leftOvers = "";
                     foreach (var rowString in Lines.Skip(1))
                     {

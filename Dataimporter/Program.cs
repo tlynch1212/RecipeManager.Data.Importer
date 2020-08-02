@@ -1,12 +1,5 @@
 ﻿using Dataimporter.Converters;
-using Dataimporter.Models;
-using Dataimporter.Utils;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Dataimporter
 {

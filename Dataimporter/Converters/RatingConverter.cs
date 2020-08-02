@@ -13,14 +13,22 @@ namespace Dataimporter.Converters
         public static void ProcessRatings(string path)
         {
             Console.WriteLine("trying path: " + path);
-            if (File.Exists(path))
+            var tempPath = path;
+            if (path.StartsWith("http"))
+            {
+                tempPath = @".\RAW_ratings.csv";
+                var wc = new System.Net.WebClient();
+                wc.DownloadFile(path, tempPath);
+            }
+
+            if (File.Exists(tempPath))
             {
                 Console.WriteLine("File found. Proccessing Ratings...");
                 var batch = 0;
                 var totalCount = 0;
                 using (var db = new DataContext())
                 {
-                    var Lines = File.ReadLines(path).Select(a => a);
+                    var Lines = File.ReadLines(tempPath).Select(a => a);
                     foreach (var rowString in Lines.Skip(1))
                     {
                         var row = CsvUtils.SplitCSV(rowString);
@@ -30,6 +38,11 @@ namespace Dataimporter.Converters
                             var rating = ConvertToRating(row, int.Parse(row[1]));
                             if (db.Ratings.FirstOrDefault(r => r.UserId == rating.UserId && rating.RecipeId == r.RecipeId) == null)
                             {
+                                db.Users.Add(new User
+                                {
+                                    Id = int.Parse(row[0]),
+                                    AuthId = row[0]
+                                });
                                 db.Ratings.Add(rating);
                                 batch += 1;
                                 if (batch == 1000)

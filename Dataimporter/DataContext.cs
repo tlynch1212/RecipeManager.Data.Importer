@@ -13,7 +13,7 @@ namespace Dataimporter
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("User ID=postgres;Password=password;Server=host.docker.internal;Port=7978;Database=recipemanager;");
+            optionsBuilder.UseNpgsql("Database=recipemanager;Server=db-recipemanager.postgres.database.azure.com;User Id=tlynch1212@db-recipemanager;Password=6Q@juFTZFQy47E!O5Z@Zfc%c89$;SslMode=Require;");
         }
     }
 }
