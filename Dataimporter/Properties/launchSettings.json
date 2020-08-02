@@ -2,7 +2,7 @@
   "profiles": {
     "Dataimporter": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Development\\Recipes\\RAW_recipes.csv\""
+      "commandLineArgs": "ratings \"C:\\Development\\Recipes\\RAW_ratings.csv\""
     }
   }
 }
