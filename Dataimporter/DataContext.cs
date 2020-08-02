@@ -13,7 +13,7 @@ namespace Dataimporter
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Database=recipemanager;Server=db-recipemanager.postgres.database.azure.com;User Id=tlynch1212@db-recipemanager;Password=6Q@juFTZFQy47E!O5Z@Zfc%c89$;SslMode=Require;");
+            optionsBuilder.UseNpgsql("Database=recipemanager;Server=servName;User Id=id;Password=password;SslMode=Require;");
         }
     }
 }
