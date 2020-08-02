@@ -105,6 +105,8 @@ namespace Dataimporter.Migrations
                 name: "IX_Ratings_RecipeId",
                 table: "Ratings",
                 column: "RecipeId");
+
+            migrationBuilder.Sql("CREATE EXTENSION IF NOT EXISTS \"uuid - ossp\";");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
