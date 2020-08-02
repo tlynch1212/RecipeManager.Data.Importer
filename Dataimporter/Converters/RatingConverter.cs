@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dataimporter.Converters
 {
@@ -26,6 +26,7 @@ namespace Dataimporter.Converters
                 Console.WriteLine("File found. Proccessing Ratings...");
                 var batch = 0;
                 var totalCount = 0;
+                var users = new List<User>();
                 using (var db = new DataContext())
                 {
                     var Lines = File.ReadLines(tempPath).Select(a => a);
@@ -36,20 +37,25 @@ namespace Dataimporter.Converters
                         if (recipe != null)
                         {
                             var rating = ConvertToRating(row, int.Parse(row[1]));
-                            if (db.Ratings.FirstOrDefault(r => r.UserId == rating.UserId && rating.RecipeId == r.RecipeId) == null)
+                            if (db.Ratings.AsNoTracking().FirstOrDefault(r => r.UserId == rating.UserId && rating.RecipeId == r.RecipeId) == null)
                             {
-                                db.Users.Add(new User
+                                if ((users.FirstOrDefault(u => u.Id == int.Parse(row[0])) == null) && (db.Users.AsNoTracking().FirstOrDefault(u => u.Id == int.Parse(row[0])) == null))
                                 {
-                                    Id = int.Parse(row[0]),
-                                    AuthId = row[0]
-                                });
+                                    users.Add(new User
+                                    {
+                                        Id = int.Parse(row[0]),
+                                        AuthId = row[0]
+                                    });
+                                }
                                 db.Ratings.Add(rating);
                                 batch += 1;
                                 if (batch == 1000)
                                 {
+                                    db.Users.AddRange(users);
                                     db.SaveChanges();
                                     totalCount += 1000;
                                     Console.WriteLine($"Added - {batch} Ratings");
+                                    users.Clear();
                                     batch = 0;
                                 }
                             }
