@@ -18,6 +18,10 @@ namespace Dataimporter
             {
                 RatingConverter.ProcessRatings(path);
             }
+            else if (processType.Equals("users"))
+            {
+                UserConverter.ProcessUsers(path);
+            }
             else
             {
                 Console.WriteLine($"Processing type {processType}, not valid.");
