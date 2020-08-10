@@ -26,7 +26,6 @@ namespace Dataimporter.Converters
                 Console.WriteLine("File found. Proccessing Ratings...");
                 var batch = 0;
                 var totalCount = 0;
-                var users = new List<User>();
                 using (var db = new DataContext())
                 {
                     var Lines = File.ReadLines(tempPath).Select(a => a);
@@ -39,19 +38,10 @@ namespace Dataimporter.Converters
                             var rating = ConvertToRating(row, int.Parse(row[1]));
                             if (db.Ratings.AsNoTracking().FirstOrDefault(r => r.UserId == rating.UserId && rating.RecipeId == r.RecipeId) == null)
                             {
-                                if ((users.FirstOrDefault(u => u.Id == int.Parse(row[0])) == null) && (db.Users.AsNoTracking().FirstOrDefault(u => u.Id == int.Parse(row[0])) == null))
-                                {
-                                    users.Add(new User
-                                    {
-                                        Id = int.Parse(row[0]),
-                                        AuthId = row[0]
-                                    });
-                                }
                                 db.Ratings.Add(rating);
                                 batch += 1;
                                 if (batch == 1000)
                                 {
-                                    db.Users.AddRange(users);
                                     db.SaveChanges();
                                     totalCount += 1000;
                                     Console.WriteLine($"Added - {batch} Ratings");
