@@ -5,7 +5,7 @@ namespace Dataimporter.Utils
 {
     public static class CsvUtils
     {
-        public static string[] SplitCSV(string line)
+        public static string[] SplitCsv(string line)
         {
             List<string> result = new List<string>();
             StringBuilder currentStr = new StringBuilder("");

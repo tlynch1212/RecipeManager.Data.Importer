@@ -27,10 +27,10 @@ namespace Dataimporter.Converters
                 var totalCount = 0;
                 using (var db = new DataContext())
                 {
-                    var Lines = File.ReadLines(tempPath).Select(a => a);
-                    foreach (var rowString in Lines.Skip(1))
+                    var lines = File.ReadLines(tempPath).Select(a => a);
+                    foreach (var rowString in lines.Skip(1))
                     {
-                        var row = CsvUtils.SplitCSV(rowString);
+                        var row = CsvUtils.SplitCsv(rowString);
 
                         if (db.Users.FirstOrDefault(u => u.Id == int.Parse(row[0])) == null)
                         {

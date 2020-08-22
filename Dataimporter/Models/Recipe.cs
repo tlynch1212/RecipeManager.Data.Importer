@@ -14,7 +14,7 @@ namespace Dataimporter.Models
         public List<Ingredient> Ingredients { get; set; }
         public bool IsPublic { get; set; }
         public bool IsShared { get; set; }
-        public List<string> SharedWith { get; set; }
+        public List<RecipeUser> SharedWith { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ChangedDate { get; set; }
     }

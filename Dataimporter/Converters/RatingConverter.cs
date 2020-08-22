@@ -28,10 +28,10 @@ namespace Dataimporter.Converters
                 var totalCount = 0;
                 using (var db = new DataContext())
                 {
-                    var Lines = File.ReadLines(tempPath).Select(a => a);
-                    foreach (var rowString in Lines.Skip(1))
+                    var lines = File.ReadLines(tempPath).Select(a => a);
+                    foreach (var rowString in lines.Skip(1))
                     {
-                        var row = CsvUtils.SplitCSV(rowString);
+                        var row = CsvUtils.SplitCsv(rowString);
                         var recipe = db.Recipes.FirstOrDefault(r => r.Id == int.Parse(row[1]));
                         if (recipe != null)
                         {
@@ -45,7 +45,6 @@ namespace Dataimporter.Converters
                                     db.SaveChanges();
                                     totalCount += 1000;
                                     Console.WriteLine($"Added - {batch} Ratings");
-                                    users.Clear();
                                     batch = 0;
                                 }
                             }

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Dataimporter.Converters
 {
@@ -28,13 +27,13 @@ namespace Dataimporter.Converters
                 var totalCount = 0;
                 using (var db = new DataContext())
                 {
-                    var Lines = File.ReadLines(tempPath).Select(a => a);
+                    var lines = File.ReadLines(tempPath).Select(a => a);
                     var leftOvers = "";
-                    foreach (var rowString in Lines.Skip(1))
+                    foreach (var rowString in lines.Skip(1))
                     {
                         if (rowString.EndsWith("]\""))
                         {
-                            var recipeString = "";
+                            string recipeString;
                             if (!string.IsNullOrEmpty(leftOvers))
                             {
                                 recipeString = leftOvers + rowString;
@@ -45,7 +44,7 @@ namespace Dataimporter.Converters
                                 recipeString = rowString;
                             }
 
-                            var row = CsvUtils.SplitCSV(recipeString);
+                            var row = CsvUtils.SplitCsv(recipeString);
                             var recipe = ConvertToRecipe(row);
                             recipe.CreatedDate = DateTime.Now;
                             recipe.IsPublic = true;
